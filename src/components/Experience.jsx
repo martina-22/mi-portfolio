@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Tilt } from 'react-tilt';
+import Tilt from 'react-parallax-tilt';
 import { cvData } from '../data/cv';
 import { GraduationCap, BookOpen, Calendar, Award } from 'lucide-react';
 
 const EducationCard = ({ data, type, index }) => {
     return (
-        <Tilt options={{ max: 15, scale: 1.02, speed: 400 }} style={{ height: '100%' }}>
+        <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.02} transitionSpeed={400} style={{ height: '100%' }}>
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

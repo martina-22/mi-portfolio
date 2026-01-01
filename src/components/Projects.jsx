@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Tilt } from 'react-tilt';
+import Tilt from 'react-parallax-tilt';
 import { projects as projectsData } from '../data/projects';
 import { X } from 'lucide-react';
 
@@ -41,7 +41,7 @@ const Projects = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
                 {projectsData.map((project) => (
                     <div key={project.id} style={{ height: '100%' }}>
-                        <Tilt options={{ max: 15, scale: 1.02, speed: 400 }} style={{ height: '100%' }}>
+                        <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.02} transitionSpeed={400} style={{ height: '100%' }}>
                             <motion.div
                                 onClick={() => setSelectedId(project.id)}
                                 initial={{ opacity: 0, y: 20 }}
