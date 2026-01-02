@@ -7,7 +7,13 @@ const Cursor = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        let lastTouchTime = 0;
+
         const mouseMove = (e) => {
+            // If touch event happened recently (within 1s), ignore mouse movement
+            // This prevents mobile browsers from triggering the cursor with emulated mouse events
+            if (Date.now() - lastTouchTime < 1000) return;
+
             setMousePosition({
                 x: e.clientX,
                 y: e.clientY
@@ -16,6 +22,7 @@ const Cursor = () => {
         };
 
         const touchStart = (e) => {
+            lastTouchTime = Date.now();
             const touch = e.touches[0];
             setMousePosition({
                 x: touch.clientX,
@@ -25,6 +32,7 @@ const Cursor = () => {
         };
 
         const touchMove = (e) => {
+            lastTouchTime = Date.now();
             const touch = e.touches[0];
             setMousePosition({
                 x: touch.clientX,
