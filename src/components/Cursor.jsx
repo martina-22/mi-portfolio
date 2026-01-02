@@ -7,53 +7,27 @@ const Cursor = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        let lastTouchTime = 0;
-
-        const mouseMove = (e) => {
-            // If touch event happened recently (within 1s), ignore mouse movement
-            // This prevents mobile browsers from triggering the cursor with emulated mouse events
-            if (Date.now() - lastTouchTime < 1000) return;
-
-            setMousePosition({
-                x: e.clientX,
-                y: e.clientY
-            });
+        const updateCursor = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
             setIsVisible(true);
         };
 
-        const touchStart = (e) => {
-            lastTouchTime = Date.now();
-            const touch = e.touches[0];
-            setMousePosition({
-                x: touch.clientX,
-                y: touch.clientY
-            });
-            setIsVisible(true);
+        const handlePointerUp = (e) => {
+            // Only hide if it was a touch event
+            if (e.pointerType === 'touch') {
+                setIsVisible(false);
+            }
         };
 
-        const touchMove = (e) => {
-            lastTouchTime = Date.now();
-            const touch = e.touches[0];
-            setMousePosition({
-                x: touch.clientX,
-                y: touch.clientY
-            });
-        };
-
-        const touchEnd = () => {
-            setIsVisible(false);
-        };
-
-        window.addEventListener("mousemove", mouseMove);
-        window.addEventListener("touchstart", touchStart);
-        window.addEventListener("touchmove", touchMove);
-        window.addEventListener("touchend", touchEnd);
+        // Pointer Events work for both mouse and touch, and tell us the type
+        window.addEventListener("pointermove", updateCursor);
+        window.addEventListener("pointerdown", updateCursor);
+        window.addEventListener("pointerup", handlePointerUp);
 
         return () => {
-            window.removeEventListener("mousemove", mouseMove);
-            window.removeEventListener("touchstart", touchStart);
-            window.removeEventListener("touchmove", touchMove);
-            window.removeEventListener("touchend", touchEnd);
+            window.removeEventListener("pointermove", updateCursor);
+            window.removeEventListener("pointerdown", updateCursor);
+            window.removeEventListener("pointerup", handlePointerUp);
         };
     }, []);
 
@@ -84,7 +58,7 @@ const Cursor = () => {
                 x: { duration: 0 },
                 y: { duration: 0 },
                 scale: { duration: 0.2 },
-                opacity: { duration: 0.2 }
+                opacity: { duration: 0.15 }
             }}
             style={{
                 position: 'fixed',
