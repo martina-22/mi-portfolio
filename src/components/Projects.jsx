@@ -99,75 +99,78 @@ const Projects = () => {
                         background: 'rgba(0,0,0,0.6)',
                         backdropFilter: 'blur(5px)',
                         padding: '20px'
-                    }} onClick={() => setSelectedId(null)}>
-                        <motion.div
-                            layoutId={selectedId}
-                            onClick={(e) => e.stopPropagation()}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            style={{
-                                width: '100%',
-                                maxWidth: '600px',
-                                background: 'var(--bg-secondary)',
-                                padding: '40px',
-                                borderRadius: '15px',
-                                position: 'relative',
-                                border: '1px solid var(--accent-primary)',
-                                boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
-                            }}
-                        >
-                            <button
-                                onClick={() => setSelectedId(null)}
-                                style={{
-                                    position: 'absolute',
-                                    top: '20px',
-                                    right: '20px',
-                                    background: 'transparent',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                    color: 'var(--text-secondary)'
-                                }}
-                            >
-                                <X />
-                            </button>
+                        onclick={() => setSelectedId(null)}>
+                <motion.div
+                    layoutId={selectedId}
+                    onClick={(e) => e.stopPropagation()}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    style={{
+                        width: '100%',
+                        maxWidth: '600px',
+                        maxHeight: '90vh', // Prevent going off-screen
+                        overflowY: 'auto', // Enable scrolling inside modal
+                        background: 'var(--bg-secondary)',
+                        padding: '40px',
+                        borderRadius: '15px',
+                        position: 'relative',
+                        border: '1px solid var(--accent-primary)',
+                        boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                        margin: '20px' // Ensure gap on mobile
+                    }}
+                >
+                    <button
+                        onClick={() => setSelectedId(null)}
+                        style={{
+                            position: 'absolute',
+                            top: '20px',
+                            right: '20px',
+                            background: 'transparent',
+                            border: 'none',
+                            cursor: 'pointer',
+                            color: 'var(--text-secondary)'
+                        }}
+                    >
+                        <X />
+                    </button>
 
-                            {projectsData.map(project => {
-                                if (project.id === selectedId) {
-                                    return (
-                                        <div key={project.id}>
-                                            <motion.h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--accent-secondary)' }}>
-                                                {project.title}
-                                            </motion.h2>
-                                            <motion.p style={{ lineHeight: 1.8, color: 'var(--text-primary)', fontSize: '1.1rem' }}>
-                                                {project.details}
-                                            </motion.p>
+                    {projectsData.map(project => {
+                        if (project.id === selectedId) {
+                            return (
+                                <div key={project.id}>
+                                    <motion.h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--accent-secondary)' }}>
+                                        {project.title}
+                                    </motion.h2>
+                                    <motion.p style={{ lineHeight: 1.8, color: 'var(--text-primary)', fontSize: '1.1rem' }}>
+                                        {project.details}
+                                    </motion.p>
 
-                                            <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                                                <h5 style={{ marginBottom: '10px', color: 'var(--text-secondary)' }}>Tecnologías:</h5>
-                                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                                                    {project.tech.map(t => (
-                                                        <span key={t} style={{
-                                                            fontSize: '0.9rem',
-                                                            color: 'var(--accent-primary)',
-                                                            background: 'rgba(139, 92, 246, 0.1)',
-                                                            padding: '5px 10px',
-                                                            borderRadius: '5px'
-                                                        }}>
-                                                            {t}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
+                                    <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                                        <h5 style={{ marginBottom: '10px', color: 'var(--text-secondary)' }}>Tecnologías:</h5>
+                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                                            {project.tech.map(t => (
+                                                <span key={t} style={{
+                                                    fontSize: '0.9rem',
+                                                    color: 'var(--accent-primary)',
+                                                    background: 'rgba(139, 92, 246, 0.1)',
+                                                    padding: '5px 10px',
+                                                    borderRadius: '5px'
+                                                }}>
+                                                    {t}
+                                                </span>
+                                            ))}
                                         </div>
-                                    )
-                                }
-                            })}
-                        </motion.div>
-                    </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+                </motion.div>
+            </div>
                 )}
-            </AnimatePresence>
-        </section>
+        </AnimatePresence>
+        </section >
     );
 };
 
