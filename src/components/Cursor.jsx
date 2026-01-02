@@ -77,7 +77,7 @@ const Cursor = () => {
                 width: '32px',
                 height: '32px',
                 borderRadius: '50%',
-                background: 'white',
+                background: 'red', // DEBUG: Change to red to verify deployment/cache
                 pointerEvents: 'none',
                 zIndex: 9999,
                 mixBlendMode: 'difference'
