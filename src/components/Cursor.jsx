@@ -10,7 +10,11 @@ const Cursor = () => {
         // Detect if the device primarily uses touch
         const checkMobile = () => {
             const isTouch = window.matchMedia("(pointer: coarse)").matches;
-            setIsMobile(isTouch);
+            const hasTouchEvents = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            // Disable if it's strictly a coarse pointer OR if it looks like a mobile phone
+            setIsMobile(isTouch || (hasTouchEvents && isMobileUA));
         };
 
         checkMobile();
