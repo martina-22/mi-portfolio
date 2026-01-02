@@ -4,36 +4,41 @@ import { motion } from 'framer-motion';
 const Cursor = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
-    const [isVisible, setIsVisible] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        const updateCursor = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-            setIsVisible(true);
+        // Detect if the device primarily uses touch
+        const checkMobile = () => {
+            const isTouch = window.matchMedia("(pointer: coarse)").matches;
+            setIsMobile(isTouch);
         };
 
-        const handlePointerUp = (e) => {
-            // Only hide if it was a touch event
-            if (e.pointerType === 'touch') {
-                setIsVisible(false);
-            }
-        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
 
-        // Pointer Events work for both mouse and touch, and tell us the type
-        window.addEventListener("pointermove", updateCursor);
-        window.addEventListener("pointerdown", updateCursor);
-        window.addEventListener("pointerup", handlePointerUp);
-        window.addEventListener("pointercancel", handlePointerUp);
-
-        return () => {
-            window.removeEventListener("pointermove", updateCursor);
-            window.removeEventListener("pointerdown", updateCursor);
-            window.removeEventListener("pointerup", handlePointerUp);
-            window.removeEventListener("pointercancel", handlePointerUp);
-        };
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     useEffect(() => {
+        if (isMobile) return; // Do not add listeners on mobile
+
+        const mouseMove = (e) => {
+            setMousePosition({
+                x: e.clientX,
+                y: e.clientY
+            });
+        };
+
+        window.addEventListener("mousemove", mouseMove);
+
+        return () => {
+            window.removeEventListener("mousemove", mouseMove);
+        };
+    }, [isMobile]);
+
+    useEffect(() => {
+        if (isMobile) return;
+
         const handleMouseOver = (e) => {
             if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
                 setIsHovering(true);
@@ -44,7 +49,10 @@ const Cursor = () => {
 
         window.addEventListener("mouseover", handleMouseOver);
         return () => window.removeEventListener("mouseover", handleMouseOver);
-    }, []);
+    }, [isMobile]);
+
+    // If it's a mobile device (touch), do not render the custom cursor at all
+    if (isMobile) return null;
 
     return (
         <motion.div
@@ -53,14 +61,12 @@ const Cursor = () => {
                 x: mousePosition.x - 16,
                 y: mousePosition.y - 16,
                 scale: isHovering ? 1.5 : 1,
-                opacity: isVisible ? 1 : 0,
                 mixBlendMode: 'difference'
             }}
             transition={{
                 x: { duration: 0 },
                 y: { duration: 0 },
-                scale: { duration: 0.2 },
-                opacity: { duration: 0.15 }
+                scale: { duration: 0.2 }
             }}
             style={{
                 position: 'fixed',
