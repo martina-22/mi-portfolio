@@ -8,7 +8,6 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Background from './components/Background';
-import Cursor from './components/Cursor';
 import Footer from './components/Footer';
 
 const PageWrapper = ({ children }) => (
@@ -28,7 +27,6 @@ function App() {
 
   return (
     <div className="app-container">
-      <Cursor />
       <Background />
       <Header />
       <main style={{ paddingTop: '80px', minHeight: '100vh' }}>

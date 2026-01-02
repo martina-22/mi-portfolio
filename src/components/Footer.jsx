@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Heart } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import { cvData } from '../data/cv';
 
 const Footer = () => {
@@ -41,9 +41,6 @@ const Footer = () => {
                 {/* Copyright & Made With */}
                 <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
                     <p style={{ marginBottom: '5px' }}>© {new Date().getFullYear()} {cvData.personalInfo.name}. Todos los derechos reservados.</p>
-                    <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', opacity: 0.7, fontSize: '0.8rem' }}>
-                        Hecho con <Heart size={12} fill="var(--accent-primary)" color="var(--accent-primary)" /> y React
-                    </p>
                 </div>
             </div>
         </footer>

@@ -83,7 +83,19 @@ const Header = () => {
             </nav>
 
             {/* Mobile Menu Button - Visible only on mobile via CSS ideally, or we use window width. For now, assuming direct JS control or CSS class */}
-            <div className="mobile-toggle" style={{ zIndex: 1001, cursor: 'pointer' }} onClick={toggleMenu}>
+            <div
+                className="mobile-toggle"
+                style={{ zIndex: 1001, cursor: 'pointer' }}
+                onClick={toggleMenu}
+                role="button"
+                tabIndex={0}
+                aria-label="Menú de navegación"
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        toggleMenu();
+                    }
+                }}
+            >
                 {menuOpen ? <X size={28} color="var(--text-primary)" /> : <Menu size={28} color="var(--text-primary)" />}
             </div>
 

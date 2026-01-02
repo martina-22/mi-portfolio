@@ -44,6 +44,13 @@ const Projects = () => {
                         <Tilt tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.02} transitionSpeed={400} style={{ height: '100%' }}>
                             <motion.div
                                 onClick={() => setSelectedId(project.id)}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' || e.key === ' ') {
+                                        setSelectedId(project.id);
+                                    }
+                                }}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5 }}
@@ -121,7 +128,9 @@ const Projects = () => {
                             }}
                         >
                             <button
+                                start="20px" // Fix for missing prop if needed, or just aria
                                 onClick={() => setSelectedId(null)}
+                                aria-label="Cerrar detalles del proyecto"
                                 style={{
                                     position: 'absolute',
                                     top: '20px',
