@@ -72,3 +72,12 @@ button {
   background-clip: text;
   color: transparent;
 }
+
+/* Force hide cursor on mobile devices */
+@media (hover: none),
+(pointer: coarse),
+(max-width: 1024px) {
+  .cursor {
+    display: none !important;
+  }
+}
