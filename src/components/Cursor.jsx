@@ -23,11 +23,13 @@ const Cursor = () => {
         window.addEventListener("pointermove", updateCursor);
         window.addEventListener("pointerdown", updateCursor);
         window.addEventListener("pointerup", handlePointerUp);
+        window.addEventListener("pointercancel", handlePointerUp);
 
         return () => {
             window.removeEventListener("pointermove", updateCursor);
             window.removeEventListener("pointerdown", updateCursor);
             window.removeEventListener("pointerup", handlePointerUp);
+            window.removeEventListener("pointercancel", handlePointerUp);
         };
     }, []);
 
