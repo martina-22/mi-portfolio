@@ -4,27 +4,24 @@ import { motion } from 'framer-motion';
 const Cursor = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    // Start disabled (hidden) by default
+    const [isEnabled, setIsEnabled] = useState(false);
 
     useEffect(() => {
-        // Detect if the device primarily uses touch
-        const checkMobile = () => {
-            const isTouch = window.matchMedia("(pointer: coarse)").matches;
-            const hasTouchEvents = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-            // Disable if it's strictly a coarse pointer OR if it looks like a mobile phone
-            setIsMobile(isTouch || (hasTouchEvents && isMobileUA));
+        const checkPointer = () => {
+            // Only enable custom cursor if device has a FINE pointer (Mouse/Trackpad)
+            // Touch screens are 'coarse'.
+            const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
+            setIsEnabled(hasFinePointer);
         };
 
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-
-        return () => window.removeEventListener('resize', checkMobile);
+        checkPointer();
+        window.addEventListener('resize', checkPointer);
+        return () => window.removeEventListener('resize', checkPointer);
     }, []);
 
     useEffect(() => {
-        if (isMobile) return; // Do not add listeners on mobile
+        if (!isEnabled) return;
 
         const mouseMove = (e) => {
             setMousePosition({
@@ -34,14 +31,11 @@ const Cursor = () => {
         };
 
         window.addEventListener("mousemove", mouseMove);
-
-        return () => {
-            window.removeEventListener("mousemove", mouseMove);
-        };
-    }, [isMobile]);
+        return () => window.removeEventListener("mousemove", mouseMove);
+    }, [isEnabled]);
 
     useEffect(() => {
-        if (isMobile) return;
+        if (!isEnabled) return;
 
         const handleMouseOver = (e) => {
             if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
@@ -53,10 +47,10 @@ const Cursor = () => {
 
         window.addEventListener("mouseover", handleMouseOver);
         return () => window.removeEventListener("mouseover", handleMouseOver);
-    }, [isMobile]);
+    }, [isEnabled]);
 
-    // If it's a mobile device (touch), do not render the custom cursor at all
-    if (isMobile) return null;
+    // If not enabled (meaning we didn't confirm a mouse), return null
+    if (!isEnabled) return null;
 
     return (
         <motion.div
