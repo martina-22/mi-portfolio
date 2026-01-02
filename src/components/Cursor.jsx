@@ -9,10 +9,14 @@ const Cursor = () => {
 
     useEffect(() => {
         const checkPointer = () => {
-            // Only enable custom cursor if device has a FINE pointer (Mouse/Trackpad)
-            // Touch screens are 'coarse'.
+            // Only enable custom cursor if device:
+            // 1. Has a FINE pointer (Mouse/Trackpad)
+            // 2. AND is NOT a mobile device (User Agent check)
+            // This prevents iPhones reporting 'pointer: fine' from showing the cursor.
             const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
-            setIsEnabled(hasFinePointer);
+            const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            setIsEnabled(hasFinePointer && !isMobileUA);
         };
 
         checkPointer();
