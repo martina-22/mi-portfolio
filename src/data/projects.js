@@ -1,4 +1,4 @@
-export const projects = [
+export const workExperience = [
     {
         id: 1,
         title: "Realidad Aumentada - Clarolab",
@@ -16,16 +16,62 @@ export const projects = [
         tech: ["Java", "SOLID", "API REST", "JavaScript", "CSS", "HTML"],
         link: "#",
         color: "from-blue-400 to-blue-600"
-    },
+    }
+];
+
+export const personalProjects = [
     {
         id: 3,
         title: "Sistema IoT con MQTT",
-        description: "Sistema de monitoreo y control IoT utilizando Node-RED y protocolo MQTT.",
-        details: "Desarrollo de una solución IoT para la adquisición y visualización de datos de sensores en tiempo real. Implementé flujos en Node-RED para procesar la información y utilicé MQTT como protocolo de mensajería ligero y eficiente. El sistema permite el monitoreo remoto y la toma de decisiones basada en datos.",
-        tech: ["Node-RED", "MQTT", "IoT", "Dashboard"],
+        description: "Plataforma IoT para monitoreo y control en tiempo real.",
+        details:
+            "Solución IoT orientada a la adquisición, procesamiento y visualización de datos de sensores en tiempo real. Implementación de flujos en Node-RED y comunicación eficiente mediante MQTT para monitoreo remoto y análisis operativo.",
+        tech: ["Node-RED", "MQTT", "IoT", "Dashboard", "AWS"],
         link: "#",
         color: "from-green-400 to-emerald-600"
+    },
+    {
+        id: 4,
+        title: "Robot controlado por IA",
+        description: "Control robótico mediante reconocimiento de gestos.",
+        details:
+            "Sistema de control de un robot basado en visión artificial. Uso de MediaPipe para detección de gestos de la mano y envío de comandos en tiempo real a una Raspberry Pi, logrando un control preciso y reactivo.",
+        tech: ["Python", "MediaPipe", "Raspberry Pi", "MQTT"],
+        link: "#",
+        color: "from-green-400 to-emerald-600"
+    },
+    {
+        id: 5,
+        title: "Gestión de Disquería",
+        description: "Sistema web para inventario y ventas de una disquería.",
+        details:
+            "Aplicación web desarrollada en Ruby on Rails para la gestión de productos (CDs y vinilos nuevos y usados), ventas presenciales y administración de usuarios con roles diferenciados.",
+        tech: ["Ruby", "Ruby on Rails", "SQLite", "HTML", "CSS", "JavaScript", "Git"],
+        link: "#",
+        color: "from-green-400 to-emerald-600"
+    },
+    {
+        id: 6,
+        title: "Aplicación web para gestionar alquiler de autos",
+        description: "Sistema web de alquiler de vehículos con pagos online.",
+        details:
+            "Aplicación web completa para la gestión de reservas y flota de vehículos, incorporación de extras, políticas comerciales y procesamiento de pagos online mediante Mercado Pago.",
+        tech: ["Python", "Flask", "React", "Vue.js", "SQL", "Git", "Mercado Pago API"],
+        link: "#",
+        color: "from-green-400 to-emerald-600"
+    },
+    {
+        id: 7,
+        title: "Registro de sitios históricos",
+        description: "Plataforma web para gestión y consulta de sitios históricos.",
+        details:
+            "Sistema con panel de administración en Flask y portal público mobile-first en Vue.js para registrar, administrar y visualizar sitios históricos con mapas interactivos, reseñas y favoritos. Persistencia en PostgreSQL con soporte geoespacial.",
+        tech: ["Python", "Flask", "Vue.js", "PostgreSQL", "PostGIS", "Git"],
+        link: "#",
+        color: "from-indigo-400 to-blue-600"
     }
+
+
 ];
 
 export const skills = [
