@@ -15,9 +15,12 @@ export const cvData = {
         summary: "Estudiante de Licenciatura en Informática con experiencia en desarrollo de software y participación en un proyecto de realidad aumentada. Interés en ampliar experiencia técnica mediante roles donde aplicar conocimientos de programación, buenas prácticas y diseño de software."
     },
     skills: {
-        languages: ["Java", "Python", "JavaScript", "TypeScript", "HTML", "SQL", ".Net"],
-        frameworks: ["React", "Vue.js", "Flask", "Node.js", "Ruby on Rails", "A-Frame", "Three.js", "Pandas", "Spark"],
-        tools: ["Git", "GitHub", "GitLab", "Docker", "AWS EC2", "MQTT", "Node-RED", "MapReduce"]
+        languages: ["Java", "Python", "JavaScript", "TypeScript", "HTML", "SQL"],
+        frameworks: ["React", "Vue.js", "Flask", "Node.js", "Ruby on Rails", ".Net", "CSS", "Bash"],
+        databases: ["PostgreSQL", "MySQL"],
+        concepts: ["Diseño y consumo de APIs REST", "Arquitectura MVC", "Arquitectura de Microservicios", "POO", "Fundamentos SOLID"],
+        tools: ["Linux", "Visual Studio Code", "Postman", "Docker", "Docker Compose", "CI/CD (GitHub Actions, GitLab CI)", "Git", "GitHub", "GitLab"],
+        libraries: ["Pandas", "Apache Spark", "Three.js", "A-Frame"]
     },
     experience: [
         {

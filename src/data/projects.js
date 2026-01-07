@@ -16,6 +16,15 @@ export const projects = [
         tech: ["Java", "SOLID", "API REST", "JavaScript", "CSS", "HTML"],
         link: "#",
         color: "from-blue-400 to-blue-600"
+    },
+    {
+        id: 3,
+        title: "Sistema IoT con MQTT",
+        description: "Sistema de monitoreo y control IoT utilizando Node-RED y protocolo MQTT.",
+        details: "Desarrollo de una solución IoT para la adquisición y visualización de datos de sensores en tiempo real. Implementé flujos en Node-RED para procesar la información y utilicé MQTT como protocolo de mensajería ligero y eficiente. El sistema permite el monitoreo remoto y la toma de decisiones basada en datos.",
+        tech: ["Node-RED", "MQTT", "IoT", "Dashboard"],
+        link: "#",
+        color: "from-green-400 to-emerald-600"
     }
 ];
 
