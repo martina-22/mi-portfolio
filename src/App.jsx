@@ -9,6 +9,8 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Background from './components/Background';
 import Footer from './components/Footer';
+import Cursor from './components/Cursor';
+
 
 const PageWrapper = ({ children }) => (
   <motion.div
@@ -27,6 +29,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <Cursor />
       <Background />
       <Header />
       <main style={{ paddingTop: '80px', minHeight: '100vh' }}>
