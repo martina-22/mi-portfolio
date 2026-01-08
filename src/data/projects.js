@@ -56,7 +56,7 @@ export const personalProjects = [
         description: "Sistema web de alquiler de vehículos con pagos online.",
         details:
             "Aplicación web completa para la gestión de reservas y flota de vehículos, incorporación de extras, políticas comerciales y procesamiento de pagos online mediante Mercado Pago.",
-        tech: ["Python", "Flask", "React", "Vue.js", "SQL", "Git", "Mercado Pago API"],
+        tech: ["Python", "Flask", "React", "SQL", "Git", "Mercado Pago API"],
         link: "#",
         color: "from-green-400 to-emerald-600"
     },
